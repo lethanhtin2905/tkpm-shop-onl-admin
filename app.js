@@ -14,6 +14,7 @@ var createError = require('http-errors');
 var app = express();
 
 // router files =================================================
+var indexRouter = require('./routes/index');
 var adminRouter = require('./routes/admin');
 var Database = require('./db/database');
 
@@ -67,6 +68,7 @@ app.use((req, res, next) => {
 });
 
 // Router
+app.use('/', indexRouter);
 app.use('/', adminRouter);
 
 // catch 404 and forward to error handler
