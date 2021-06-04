@@ -3,10 +3,6 @@ var Order = require('../models/order');
 var Product = require('../models/product');
 var functions = require('./functions');
 
-// exports.index = (req, res) => {
-// 	res.render('pages/index');
-// }
-
 exports.index = (req, res) => {
 	Order.find({}) // Find all orders
 		.then(orders => {

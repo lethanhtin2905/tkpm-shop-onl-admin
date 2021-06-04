@@ -8,7 +8,7 @@ router.get('/login', adminControllers.loginPage);
 // Login Handle
 router.post('/login', adminControllers.loginHandle);
 
-//// Logout Handle
+// Logout Handle
 router.get('/logout', adminControllers.logoutHandle);
 
 module.exports = router;
