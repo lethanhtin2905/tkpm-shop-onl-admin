@@ -17,5 +17,32 @@ exports.displayUser = (req, res) => {
       });
 }
 
+// Edit Profile User
+exports.editUser = (req, res) => {
+   console.log(req.body)
+   let errors = [];
+   const newName = req.body.name;
+   const newPhone = req.body.phone;
+   const newAddress = req.body.address;
 
-
+   User.findOne({ _id: req.body.id }) // Find user by ID
+      .then(user => {
+         console.log(user)
+         if (newName != '') {
+            user.name = newName;
+         }
+         if (newPhone != '') {
+            user.phone = newPhone;
+         }
+         if (newAddress != '') {
+            user.address = newAddress;
+         }
+         user.save()
+            .then(user => {
+               req.flash('success_msg', 'Bạn đã cập nhật thành công');
+               res.redirect('/user');
+            })
+            .catch(err => console.log(err));
+      })
+      .catch(err => console.log(err));
+}

@@ -11,5 +11,6 @@ router.get('/home',ensureAuthenticated, homeControllers.index);
 
 // Customer
 router.get('/user',ensureAuthenticated, userControllers.displayUser);
+router.post('/user/edit',userControllers.editUser);
 
 module.exports = router;
