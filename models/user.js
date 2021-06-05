@@ -10,4 +10,4 @@ const userSchema = mongoose.Schema({
     locked: { type: Number }
 })
 
-module.exports = mongoose.model('user', userSchema, 'user'); 
+module.exports = mongoose.model('user', userSchema, 'user');
