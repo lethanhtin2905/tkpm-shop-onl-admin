@@ -108,6 +108,54 @@
    <!-- CONTENT-WRAPPER SECTION END-->
    <%- include('../partials/footer.ejs') %>
 
+   <!-- Phần form hiển thị để sửa thông tin -->
+   <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true"
+      style="display: none;">
+      <form method="POST" action="/user/edit">
+         <div class="modal-dialog">
+            <div class="modal-content">
+               <div class="modal-header header-panel">
+                  <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+                  <h4 class="modal-title" id="myModalLabel" style="font-weight: bold">Chỉnh sửa thông tin người dùng 
+                  </h4>
+               </div>
+               <div class="modal-body">
+                  <div class="col-md-12 col-log-12">
+                     <div class="form-group row">
+                        <label class="col-lg-2 col-md-2 col-form-label">Họ tên</label>
+                        <div class="col-lg-10 col-md-10">
+                           <input class="form-control ng-untouched ng-pristine ng-valid name" type="text" id="txt-name"
+                              name="name" required>
+                        </div>
+                     </div>
+                     <div class="form-group row">
+                        <label class="col-lg-2 col-md-2 col-form-label">Địa chỉ</label>
+                        <div class="col-lg-10 col-md-10">
+                           <input class="form-control ng-pristine ng-valid ng-touched address" type="text"
+                              id="txt-address" name="address" required>
+                        </div>
+                     </div>
+                     <div class="form-group row">
+                        <label class="col-lg-2 col-md-2 col-form-label">Số điện thoại</label>
+                        <div class="col-lg-10 col-md-10">
+                           <input class="form-control ng-pristine ng-valid ng-touched phone" type="number"
+                              id="txt-phone" name="phone" required>
+                           <input type="text" name='id' id="txt-user-id"
+                              style="height: 0px; width: 0px; visibility: hidden;">
+                        </div>
+                     </div>
+
+                  </div>
+               </div>
+               <div class="modal-footer">
+                  <button type="button" class="btn btn-default" data-dismiss="modal">Hủy</button>
+                  <button type="submit" class="btn btn-primary">Lưu thay đổi</button>
+               </div>
+            </div>
+         </div>
+      </form>
+   </div>
+   
    <!-- FOOTER SECTION END-->
    <!-- JAVASCRIPT FILES PLACED AT THE BOTTOM TO REDUCE THE LOADING TIME  -->
    <!-- CORE JQUERY  -->
@@ -136,16 +184,6 @@
          $('#txt-user-id').attr('value', id);
       })
 
-      
-
-        // $("#btn_authorization_admin").click(function(){
-        //     var id = $(this).data('id');
-        //     $("#my-form").attr('action', '/user/autho?id=' + id);
-        //     var name = $(this).parent().parent().find('#name_user').text();
-        //     var address = $(this).parent().parent().find('#address_user').text();
-        //     var phone = $(this).parent().parent().find('#phone_user').text();
-
-        // })
    </script>
 </body>
 
