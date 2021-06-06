@@ -46,3 +46,28 @@ exports.editUser = (req, res) => {
       })
       .catch(err => console.log(err));
 }
+
+//Delete user
+exports.deleteUser = function (req, res, next) {
+   const id = req.params.id;
+   console.log("id user deleted:", id)
+
+   User.deleteOne({ _id: id })
+      .then(users => {
+         res.redirect('/user');
+      })
+}
+
+//No fix
+exports.AuthoUser = function (req, res, next) {
+   const id = req.query.id;
+   console.log("id user:", id);
+   const role = 1;
+   
+   User.updateOne({ _id: id }, {
+      $set: {
+         role: role,
+      }
+   }).then(res.redirect('/user'));
+   
+}
