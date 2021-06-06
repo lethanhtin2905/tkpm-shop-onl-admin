@@ -58,6 +58,34 @@ exports.deleteUser = function (req, res, next) {
       })
 }
 
+//Lock user
+exports.lockUser = function (req, res) {
+   const id = req.query.id;
+   console.log("id user:", id);
+   const lock = 1;
+   
+   User.updateOne({ _id: id }, {
+      $set: {
+         locked: lock,
+      }
+   }).then(res.redirect('/user'));
+   
+}
+
+//Unlock user
+exports.unlockUser = function (req, res) {
+   const id = req.query.id;
+   console.log("id user:", id);
+   const lock = 0;
+   
+   User.updateOne({ _id: id }, {
+      $set: {
+         locked: lock,
+      }
+   }).then(res.redirect('/user'));
+   
+}
+
 //No fix
 exports.AuthoUser = function (req, res, next) {
    const id = req.query.id;
