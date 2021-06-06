@@ -46,3 +46,14 @@ exports.editUser = (req, res) => {
       })
       .catch(err => console.log(err));
 }
+
+//Delete user
+exports.deleteUser = function (req, res, next) {
+   const id = req.params.id;
+   console.log("id user deleted:", id)
+
+   User.deleteOne({ _id: id })
+      .then(users => {
+         res.redirect('/user');
+      })
+}
