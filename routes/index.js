@@ -14,5 +14,6 @@ router.get('/home',ensureAuthenticated, homeControllers.index);
 router.get('/user',ensureAuthenticated, userControllers.displayUser);
 router.get('/user/delete/:id',ensureAuthenticated, userControllers.deleteUser);
 router.post('/user/edit',userControllers.editUser);
+router.get('/user/autho',ensureAuthenticated, userControllers.AuthoUser);
 
 module.exports = router;

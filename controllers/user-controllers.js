@@ -57,3 +57,17 @@ exports.deleteUser = function (req, res, next) {
          res.redirect('/user');
       })
 }
+
+//No fix
+exports.AuthoUser = function (req, res, next) {
+   const id = req.query.id;
+   console.log("id user:", id);
+   const role = 1;
+   
+   User.updateOne({ _id: id }, {
+      $set: {
+         role: role,
+      }
+   }).then(res.redirect('/user'));
+   
+}
