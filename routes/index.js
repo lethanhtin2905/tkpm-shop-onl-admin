@@ -20,5 +20,6 @@ router.get('/user/autho',ensureAuthenticated, userControllers.AuthoUser);
 
 // Product
 router.get('/product', productControllers.displayProducts);
+router.get('/product/delete/:id', productControllers.deleteProduct);
 
 module.exports = router;
