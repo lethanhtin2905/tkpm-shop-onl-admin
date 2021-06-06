@@ -18,4 +18,7 @@ router.get('/user/lock',ensureAuthenticated, userControllers.lockUser);
 router.get('/user/unlock',ensureAuthenticated, userControllers.unlockUser);
 router.get('/user/autho',ensureAuthenticated, userControllers.AuthoUser);
 
+// Product
+router.get('/product', productControllers.displayProducts);
+
 module.exports = router;
