@@ -27,7 +27,6 @@ exports.addProduct = async function (req, res, next) {
    const newQuantity = req.body.quantity;
 
    const newDescription = req.body.info;
-   //console.log(req.body);
    if (!req.file) {
       res.status(401).json({ error: 'Please provide an image' });
    }
@@ -60,7 +59,6 @@ exports.addProduct = async function (req, res, next) {
                res.redirect('/product');
             }
          });
-         //console.log(image);
       }
    )
 }
@@ -106,7 +104,6 @@ exports.editProduct = (req, res) => {
                res.redirect('/product');
             }
          });
-         //console.log(image);
       }
    )
 }

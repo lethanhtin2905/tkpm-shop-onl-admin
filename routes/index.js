@@ -6,7 +6,7 @@ var userControllers = require('../controllers/user-controllers');
 const upload = require('../uploadMiddleware');
 const { ensureAuthenticated } = require('../config/auth');
 
-/* GET home page. */
+// Home page
 router.get('/',ensureAuthenticated, homeControllers.index);
 router.get('/home',ensureAuthenticated, homeControllers.index);
 
