@@ -6,7 +6,7 @@ var userControllers = require('../controllers/user-controllers');
 const upload = require('../uploadMiddleware');
 const { ensureAuthenticated } = require('../config/auth');
 
-/* GET home page. */
+// Home page
 router.get('/',ensureAuthenticated, homeControllers.index);
 router.get('/home',ensureAuthenticated, homeControllers.index);
 
@@ -20,6 +20,7 @@ router.get('/user/autho',ensureAuthenticated, userControllers.AuthoUser);
 
 // Product
 router.get('/product', productControllers.displayProducts);
+router.post('/product/add',upload.single('image'), productControllers.addProduct);
 router.post('/product/edit',upload.single('image'), productControllers.editProduct);
 router.get('/product/delete/:id', productControllers.deleteProduct);
 

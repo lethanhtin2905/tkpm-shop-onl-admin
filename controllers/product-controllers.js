@@ -18,8 +18,49 @@ exports.displayProducts = (req, res) => {
       });
 }
 
-exports.displayCategory = (req, res) => {
-   res.render('pages/category');
+exports.addProduct = async function (req, res, next) {
+
+   const newName = req.body.name;
+   const newCategory = req.body.category;
+   const newPrice = req.body.price;
+   const newOldPrice = req.body.old_price;
+   const newQuantity = req.body.quantity;
+
+   const newDescription = req.body.info;
+   if (!req.file) {
+      res.status(401).json({ error: 'Please provide an image' });
+   }
+   const uniqueFilename = new Date().toISOString();
+   const cloudinary = require('cloudinary').v2;
+   cloudinary.config({
+      cloud_name: 'trantuantrong',
+      api_key: '426257212753388',
+      api_secret: 'xpjjmLAsjx457tJYZ6qi7diHm6s'
+   })
+   cloudinary.uploader.upload(
+      "data:image/png;base64," + (req.file.buffer).toString('base64'),
+      { public_id: 'blog/' + uniqueFilename, tags: 'product' }, // directory and tags are optional
+      function (err, image) {
+         if (err) {
+            return res.send(err);
+         }
+         Product.create({
+            name: newName,
+            category: newCategory,
+            price: newPrice,
+            old_price: newOldPrice,
+            quantity: newQuantity,
+            imgSrc: image.url,
+            description: newDescription,
+         },
+         function (err, small) {
+            if (err) return next(err);
+            else {
+               res.redirect('/product');
+            }
+         });
+      }
+   )
 }
 
 exports.editProduct = (req, res) => {
@@ -63,7 +104,6 @@ exports.editProduct = (req, res) => {
                res.redirect('/product');
             }
          });
-         //console.log(image);
       }
    )
 }
