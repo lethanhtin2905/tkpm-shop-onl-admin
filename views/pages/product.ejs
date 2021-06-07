@@ -110,6 +110,92 @@
   <!-- CONTENT-WRAPPER SECTION END-->
   <%- include('../partials/footer.ejs') %>
 
+  <!-- Phần form hiển thị để sửa thông tin -->
+  <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true"
+    style="display: none;">
+    <div class="modal-dialog">
+      <form method="POST" id="my-form" enctype="multipart/form-data">
+        <div class="modal-content">
+          <div class="modal-header header-panel">
+            <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+            <h4 class="modal-title" id="myModalLabel" style="font-weight: bold">Thông tin sản phẩm</h4>
+          </div>
+          <div class="modal-body">
+            <div class="col-md-12 col-log-12">
+              <div class="form-group row">
+                <label class="col-lg-2 col-md-2 col-form-label">Tên</label>
+                <div class="col-lg-10 col-md-10">
+                  <input class="form-control ng-untouched ng-pristine ng-valid" type="text" name='name'
+                    id="txt-product-name" required>
+                </div>
+              </div>
+              <div class="form-group row">
+                <label class="col-lg-2 col-md-2 col-form-label">Danh mục</label>
+                <div class="col-lg-10 col-md-10">
+                  <input class="form-control ng-untouched ng-pristine ng-valid" type="text" name='category' required=""
+                    id="txt-product-category" required>
+                </div>
+              </div>
+        
+              <div class="form-group row">
+                <label class="col-lg-2 col-md-2 col-form-label">Giá mới</label>
+                <div class="col-lg-10 col-md-10">
+                  <input class="form-control ng-pristine ng-valid ng-touched" type="number" step="1000" name='price' required=""
+                    id="txt-product-price" required>
+                </div>
+              </div>
+              <div class="form-group row">
+                <label class="col-lg-2 col-md-2 col-form-label">Giá cũ</label>
+                <div class="col-lg-10 col-md-10">
+                  <input class="form-control ng-pristine ng-valid ng-touched" type="number" step="1000" name='old_price'
+                    id="txt-product-old-price" required>
+                </div>
+              </div>
+              <div class="form-group row">
+                <label class="col-lg-2 col-md-2 col-form-label">Số lượng</label>
+                <div class="col-lg-10 col-md-10">
+                  <input class="form-control ng-pristine ng-valid ng-touched" type="number" name='quantity'
+                    id="txt-product-quantity" required>
+                </div>
+              </div>
+              <!-- <div class="form-group">
+                <label>Mô tả</label>
+                <textarea class="form-control" rows="3" name='info' required id="txt-product-id"></textarea>
+                <input type="text" name='info' id="txt-product-id" style="height: 0px; width: 0px; visibility: hidden;">
+              </div> -->
+              <div class="form-group row">
+                <label class="col-lg-2 col-md-2 col-form-label">Mô tả</label>
+                <div class="col-lg-10 col-md-10">
+                  <input class="form-control ng-untouched ng-pristine ng-valid" type="text" name='info'
+                    id="txt-product-info" required>
+                </div>
+              </div>
+              <label class="col-form-label">Hình ảnh</label>
+              <div class="form-group">
+                <section class="thumbnail-container">
+                  <div class="thumbnail-container--content image-box" for="image-upload">
+                    <input accept="image/jpeg, image/gif, image/png" id="image-upload" multiple=""
+                      style="display: none;" type="file" name="image" onchange="loadFile(event)" required>
+                    <label class="style-pointer" for="image-upload" style="max-height: 100%; max-width: 100%">
+                      <img class="img-dialog" src="images/imageHolder.png" id="txt-product-image">
+                    </label>
+                  </div>
+                </section>
+              </div>
+            </div>
+           
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-default" data-dismiss="modal" style="margin-right: 8px;">Hủy</button>
+            <a href="/product" target="_parent">
+              <button type="submit" class="btn btn-primary">Lưu thay đổi</button>
+            </a>
+          </div>
+        </div>
+      </form>
+    </div>
+  </div>
+
   <!-- FOOTER SECTION END-->
   <!-- JAVASCRIPT FILES PLACED AT THE BOTTOM TO REDUCE THE LOADING TIME  -->
   <!-- CORE JQUERY  -->
