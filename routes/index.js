@@ -10,6 +10,12 @@ const { ensureAuthenticated } = require('../config/auth');
 router.get('/',ensureAuthenticated, homeControllers.index);
 router.get('/home',ensureAuthenticated, homeControllers.index);
 
+// Product
+router.get('/product', productControllers.displayProducts);
+router.post('/product/add',upload.single('image'), productControllers.addProduct);
+router.post('/product/edit',upload.single('image'), productControllers.editProduct);
+router.get('/product/delete/:id', productControllers.deleteProduct);
+
 // Customer
 router.get('/user',ensureAuthenticated, userControllers.displayUser);
 router.get('/user/delete/:id',ensureAuthenticated, userControllers.deleteUser);
@@ -18,10 +24,7 @@ router.get('/user/lock',ensureAuthenticated, userControllers.lockUser);
 router.get('/user/unlock',ensureAuthenticated, userControllers.unlockUser);
 router.get('/user/autho',ensureAuthenticated, userControllers.AuthoUser);
 
-// Product
-router.get('/product', productControllers.displayProducts);
-router.post('/product/add',upload.single('image'), productControllers.addProduct);
-router.post('/product/edit',upload.single('image'), productControllers.editProduct);
-router.get('/product/delete/:id', productControllers.deleteProduct);
+// Order
+router.get('/order', ensureAuthenticated, orderControllers.displayOrder);
 
 module.exports = router;
