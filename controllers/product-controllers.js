@@ -4,6 +4,7 @@ var async = require('async');
 var Product = require('../models/product');
 var functions = require('./functions');
 
+// Show all products
 exports.displayProducts = (req, res) => {
    Product.find({})
       .then(products => {
@@ -18,8 +19,8 @@ exports.displayProducts = (req, res) => {
       });
 }
 
+// Add product
 exports.addProduct = async function (req, res, next) {
-
    const newName = req.body.name;
    const newCategory = req.body.category;
    const newPrice = req.body.price;
@@ -63,6 +64,8 @@ exports.addProduct = async function (req, res, next) {
    )
 }
 
+
+// Edit product
 exports.editProduct = (req, res) => {
    console.log(req.body)
    const newName = req.body.name;
@@ -108,6 +111,7 @@ exports.editProduct = (req, res) => {
    )
 }
 
+// Delete product
 exports.deleteProduct = function (req, res, next) {
    const id = req.params.id;
    console.log("id product deleted:", id)

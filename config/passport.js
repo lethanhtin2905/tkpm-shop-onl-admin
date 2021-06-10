@@ -1,4 +1,4 @@
-// load all the things we need
+// Load all the things we need
 const LocalStrategy = require('passport-local').Strategy;
 const mongoose = require('mongoose');
 const bcrypt = require('bcryptjs');
@@ -14,7 +14,7 @@ module.exports = function(passport) {
                     if (!user) {
                         return done(null, false, { message: 'Email chưa được đăng ký' });
                     }
-                    //console.log("role: ",user);
+
                     if (user.role == 0 || !user.role) {
                         return done(null, false, { message: 'Tài khoản chưa được cấp quyền' });
                     }

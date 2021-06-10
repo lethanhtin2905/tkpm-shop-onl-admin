@@ -3,7 +3,7 @@ const passport = require('passport');
 
 var User = require('../models/user');
 
-
+// Show all users
 exports.displayUser = (req, res) => {
    User.find({})
       .then(users => {
@@ -17,7 +17,7 @@ exports.displayUser = (req, res) => {
       });
 }
 
-// Edit Profile User
+// Edit profile user
 exports.editUser = (req, res) => {
    console.log(req.body)
    let errors = [];
@@ -47,7 +47,7 @@ exports.editUser = (req, res) => {
       .catch(err => console.log(err));
 }
 
-//Delete user
+// Delete user
 exports.deleteUser = function (req, res, next) {
    const id = req.params.id;
    console.log("id user deleted:", id)
@@ -58,7 +58,7 @@ exports.deleteUser = function (req, res, next) {
       })
 }
 
-//Lock user
+// Lock user
 exports.lockUser = function (req, res) {
    const id = req.query.id;
    console.log("id user:", id);
@@ -72,7 +72,7 @@ exports.lockUser = function (req, res) {
    
 }
 
-//Unlock user
+// Unlock user
 exports.unlockUser = function (req, res) {
    const id = req.query.id;
    console.log("id user:", id);
@@ -86,7 +86,7 @@ exports.unlockUser = function (req, res) {
    
 }
 
-//No fix
+// Grant admin rights for user
 exports.AuthoUser = function (req, res, next) {
    const id = req.query.id;
    console.log("id user:", id);
