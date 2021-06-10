@@ -1,5 +1,6 @@
 var Order = require('../models/order');
 
+// Show all orders
 exports.displayOrder = (req, res) => {
     Order.find({})
         .then(orders => {
@@ -13,9 +14,9 @@ exports.displayOrder = (req, res) => {
         });
 }
 
+// Change status of order
 exports.updateOrder = (req, res) => {
     var id = req.query.id;
-    //console.log(id);
     var status = req.query.status;
     var statusNumber = parseInt(status, 10);
 

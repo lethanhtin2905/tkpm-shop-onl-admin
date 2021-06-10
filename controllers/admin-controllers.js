@@ -1,15 +1,15 @@
-const bcrypt = require('bcryptjs');
+//const bcrypt = require('bcryptjs');
 const passport = require('passport');
 
 // User Model
 var User = require('../models/user');
 
-// Login Page
+// Show login page
 exports.loginPage = (req, res) => {
     res.render('pages/login');
 }
 
-// Login Handle
+// Function login
 exports.loginHandle = (req, res, next) => {
     passport.authenticate('local', {
         successRedirect: '/home',
@@ -18,7 +18,7 @@ exports.loginHandle = (req, res, next) => {
     })(req, res, next);
 }
 
-// Logout Handle
+// Function logout
 exports.logoutHandle = (req, res) => {
     req.logout();
     req.flash('success_msg', 'Bạn đã đăng xuất');

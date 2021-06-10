@@ -11,5 +11,4 @@ router.post('/login', adminControllers.loginHandle);
 // Logout Handle
 router.get('/logout', adminControllers.logoutHandle);
 
-
 module.exports = router;

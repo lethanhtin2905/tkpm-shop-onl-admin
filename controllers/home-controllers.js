@@ -3,6 +3,7 @@ var Order = require('../models/order');
 var Product = require('../models/product');
 var functions = require('./functions');
 
+// Show home page
 exports.index = (req, res) => {
 	Order.find({}) // Find all orders
 		.then(orders => {
