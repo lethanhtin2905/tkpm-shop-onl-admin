@@ -2,7 +2,9 @@ var express = require('express');
 var router = express.Router();
 const passport = require('passport');
 var homeControllers = require('../controllers/home-controllers');
+var productControllers = require('../controllers/product-controllers')
 var userControllers = require('../controllers/user-controllers');
+var orderControllers = require('../controllers/order-controllers');
 const upload = require('../uploadMiddleware');
 const { ensureAuthenticated } = require('../config/auth');
 
