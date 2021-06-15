@@ -42,5 +42,7 @@ router.post('/order/update-status-order', orderControllers.updateOrder);
 
 // Get store page
 router.get('/store', ensureAuthenticated, storeControllers.displayStore);
+//Delete store
+router.get('/store/delete/:id', ensureAuthenticated, storeControllers.deleteStore);
 
 module.exports = router;
