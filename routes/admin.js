@@ -2,13 +2,13 @@ var express = require('express');
 var router = express.Router();
 var adminControllers = require('../controllers/admin-controllers');
 
-// Login Page
+// Login page
 router.get('/login', adminControllers.loginPage);
 
-// Login Handle
+// Login handle
 router.post('/login', adminControllers.loginHandle);
 
-// Logout Handle
+// Logout handle
 router.get('/logout', adminControllers.logoutHandle);
 
 module.exports = router;
