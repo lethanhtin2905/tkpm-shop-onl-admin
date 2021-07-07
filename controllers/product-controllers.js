@@ -26,21 +26,21 @@ exports.addProduct = async function (req, res, next) {
    const newPrice = req.body.price;
    const newOldPrice = req.body.old_price;
    const newQuantity = req.body.quantity;
-
    const newDescription = req.body.info;
+
    if (!req.file) {
       res.status(401).json({ error: 'Please provide an image' });
    }
    const uniqueFilename = new Date().toISOString();
    const cloudinary = require('cloudinary').v2;
    cloudinary.config({
-      cloud_name: 'trantuantrong',
-      api_key: '426257212753388',
-      api_secret: 'xpjjmLAsjx457tJYZ6qi7diHm6s'
+      cloud_name: 'lethanhtin',
+      api_key: '259864364255718',
+      api_secret: '8PaulhQKCv3BCW6SdXMHu5NHSzY'
    })
    cloudinary.uploader.upload(
       "data:image/png;base64," + (req.file.buffer).toString('base64'),
-      { public_id: 'blog/' + uniqueFilename, tags: 'product' }, // directory and tags are optional
+      { public_id: 'Electro/' + uniqueFilename, tags: 'product' }, // directory and tags are optional
       function (err, image) {
          if (err) {
             return res.send(err);
@@ -81,13 +81,13 @@ exports.editProduct = (req, res) => {
    const uniqueFilename = new Date().toISOString();
    const cloudinary = require('cloudinary').v2;
    cloudinary.config({
-      cloud_name: 'trantuantrong',
-      api_key: '426257212753388',
-      api_secret: 'xpjjmLAsjx457tJYZ6qi7diHm6s'
+      cloud_name: 'lethanhtin',
+      api_key: '259864364255718',
+      api_secret: '8PaulhQKCv3BCW6SdXMHu5NHSzY'
    })
    cloudinary.uploader.upload(
       "data:image/png;base64," + (req.file.buffer).toString('base64'),
-      { public_id: 'blog/' + uniqueFilename, tags: 'product' }, // directory and tags are optional
+      { public_id: 'Electro/' + uniqueFilename, tags: 'product' }, // directory and tags are optional
       function (err, image) {
          if (err) {
             return res.send(err);
