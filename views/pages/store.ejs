@@ -51,8 +51,10 @@
 
             <% stores.forEach((entry) => { %>
 
+               <!--data-toggle="modal" data-target="#myModal"-->
+
             <div class="col-md-4 col-sm-4">
-               <div class="panel" data-toggle="modal" data-target="#myModal">
+               <div class="panel" >
                   <div class="panel-heading header-panel store-name"
                      style="display: flex; flex-direction: row;justify-content: space-between;align-items: center;">
                      <span><%= entry.name %></span>
@@ -65,7 +67,6 @@
                   <div class="panel-body" style="text-align: center" id="store-image">
                      <img class="img-store" src="<%= entry.image %>" data-id="">
                   </div>
-                  <!-- <div class="panel-footer store-address"><%= entry.describe %></div> -->
                   <div class="panel-footer store-address"><%= entry.describe %><br><%= entry.address %></div>
 
                </div>
@@ -78,10 +79,9 @@
    <!-- CONTENT-WRAPPER SECTION END-->
    <%- include('../partials/footer.ejs') %>
 
-
    <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true"
       style="display: none;">
-      action="/user/edit
+
       <form class="edit-form" method="POST" id="my-form" enctype="multipart/form-data">
          <div class="modal-dialog">
             <div class="modal-content">
@@ -129,7 +129,9 @@
                </div>
                <div class="modal-footer">
                   <button type="button" class="btn btn-default" data-dismiss="modal">Hủy</button>
-                  <button type="submit" class="btn btn-primary">Lưu thay đổi</button>
+                  <a href="/store" target="_parent">
+                     <button type="submit" class="btn btn-primary">Lưu thay đổi</button>
+                   </a>
                </div>
             </div>
          </div>
@@ -155,19 +157,19 @@
          $('#txt-store-address').attr('placeholder', '');
       })
 
-      $(".open-dialog").click(function () {
+      /*$(".open-dialog").click(function () {
          var id = $(this).data('id');
          $("#my-form").attr('action', '/store/edit');
-         var name = $(this).find(".store-name span").text();
-         var address = $(this).find(".store-address").text();
-         var img = $(this).find(".img-store").attr('src');
-         var id = $(this).find(".img-store").data("id");
+         var name = $(this).parent().parent().find(".store-name span").text();
+         var address = $(this).parent().parent().find(".store-address").text();
+         var img = $(this).parent().parent().find(".img-store").attr('src');
+         var id = $(this).parent().parent().find(".img-store").data("id");
          $('#txt-store-name').attr('placeholder', name);
          $('#txt-store-des').attr('placeholder', '');
          $('#txt-store-image').attr('src', img);
          $('#txt-store-address').attr('placeholder', address);
          $('#txtId').attr('value', id);
-      })
+      })*/
       var loadFile = function (event) {
          var image = document.getElementById('txt-store-image');
          image.src = URL.createObjectURL(event.target.files[0]);

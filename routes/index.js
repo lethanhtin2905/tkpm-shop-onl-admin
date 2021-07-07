@@ -44,6 +44,8 @@ router.post('/order/update-status-order', orderControllers.updateOrder);
 router.get('/store', ensureAuthenticated, storeControllers.displayStore);
 //Add store
 router.post('/store/add',upload.single('image'), storeControllers.addStore);
+//Edit store
+//router.post('/store/edit',upload.single('image'), storeControllers.editStore);
 //Delete store
 router.get('/store/delete/:id', ensureAuthenticated, storeControllers.deleteStore);
 
