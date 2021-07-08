@@ -23,10 +23,12 @@ exports.displayProducts = (req, res) => {
 exports.addProduct = async function (req, res, next) {
    const newName = req.body.name;
    const newCategory = req.body.category;
+   const newProducer = req.body.producer;
    const newPrice = req.body.price;
    const newOldPrice = req.body.old_price;
    const newQuantity = req.body.quantity;
-   const newDescription = req.body.info;
+   const newDescription = req.body.des;
+   const newConfiguration = req.body.info;
 
    if (!req.file) {
       res.status(401).json({ error: 'Please provide an image' });
@@ -48,11 +50,13 @@ exports.addProduct = async function (req, res, next) {
          Product.create({
             name: newName,
             category: newCategory,
+            producer: newProducer,
             price: newPrice,
             old_price: newOldPrice,
             quantity: newQuantity,
             imgSrc: image.url,
             description: newDescription,
+            configuration: newConfiguration,
          },
          function (err, small) {
             if (err) return next(err);
@@ -70,10 +74,12 @@ exports.editProduct = (req, res) => {
    console.log(req.body)
    const newName = req.body.name;
    const newCategory = req.body.category;
+   const newProducer = req.body.producer;
    const newPrice = req.body.price;
    const newOldPrice = req.body.old_price;
    const newQuantity = req.body.quantity;
-   const newDescription = req.body.info;
+   const newDescription = req.body.des;
+   const newConfiguration = req.body.info;
 
    if (!req.file) {
       res.status(401).json({ error: 'Please provide an image...!' });
@@ -95,11 +101,13 @@ exports.editProduct = (req, res) => {
          Product.update({
             name: newName,
             category: newCategory,
+            producer: newProducer,
             price: newPrice,
             old_price: newOldPrice,
             quantity: newQuantity,
             imgSrc: image.url,
             description: newDescription,
+            configuration: newConfiguration,
          },
          function (err, small) {
             if (err) return next(err);
