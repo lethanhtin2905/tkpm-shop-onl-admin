@@ -248,6 +248,81 @@
     <script src="javascripts/dataTables/dataTables.bootstrap.js"></script>
     <!-- CUSTOM SCRIPTS  -->
     <script src="javascripts/custom.js"></script>
+
+    <script>
+        function formatDate(time) {
+            var date = new Date(time);
+            var day = date.getDate();
+            var month = date.getMonth() + 1;
+            var year = date.getFullYear();
+
+            return day + '/' + month + '/' + year;
+        }
+
+        $(".btn-edit-order").click(function () {
+
+            $("#list-product").empty();
+            var list = JSON.parse($(this).attr('data-items'));
+            list.forEach(function (e, i) {
+                var tr = document.createElement("tr")
+                var td0 = document.createElement("td")
+                td0.innerHTML = i;
+                var td1 = document.createElement("td")
+                td1.innerHTML = e.name;
+                var td2 = document.createElement("td")
+                td2.innerHTML = e.quantity;
+                tr.append(td0);
+                tr.append(td1);
+                tr.append(td2);
+                console.log(tr)
+                $("#list-product").append(tr);
+            })
+
+            var code = $(this).parent().parent().find('#order-code').text();
+            var url = "/order/" + code;
+            $.get(url)
+                .then(data => {
+                    var statusCurrent = data.status;
+                    var statusNumber = parseInt(statusCurrent, 10);
+                    if (statusNumber == 4) {
+                        $('#btn-submit').attr("disabled", true);
+                        $('#mySelect').attr("disabled", true);
+                    } else {
+                        $('#btn-submit').removeAttr("disabled");
+                        $('#mySelect').removeAttr("disabled");
+                    }
+
+                })
+
+            var totalPrice = $(this).attr('data-total-price');
+            var name = $(this).parent().parent().find('#order-name').text();
+            var phone = $(this).parent().parent().find('#order-phone').text();
+            var address = $(this).parent().parent().find('#order-address').text();
+            var update = $(this).parent().parent().find('#order-update').text();
+            var status = $(this).parent().parent().find('#order-status').text();
+
+            $('#txt-order-name').attr('placeholder', name);
+            $('#txt-order-code').attr('placeholder', code);
+            $('#txt-order-phone').attr('placeholder', phone);
+            $('#txt-order-address').attr('placeholder', address);
+            $('#txt-order-update').attr('placeholder', update);
+            $('#txt-order-status').attr('placeholder', status);
+
+            // console.log(parseInt(totalPrice,10).toLocaleString('it-IT', {style : 'currency', currency : 'VND'}))
+            $('#txt-order-totalprice').attr('placeholder', parseInt(totalPrice, 10).toLocaleString('it-IT', { style: 'currency', currency: 'VND' }));
+
+        })
+
+        $("#btn-submit").click(function () {
+            var id = $('#txt-order-code').attr('placeholder');
+            var element = document.getElementById("mySelect");
+            var selectedValue = element.options[element.selectedIndex].value;
+            var url = '/order/update-status-order?id=' + id + '&' + 'status=' + selectedValue;
+            //var url = '/order/update-status-order';
+            //console.log(selectedValue);
+            $("#myForm").attr('action', url);
+        })
+    </script>
     
 </body>
 
