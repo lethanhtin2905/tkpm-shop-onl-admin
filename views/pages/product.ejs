@@ -59,7 +59,9 @@
                       <th class="style-middle-center">STT</th>
                       <th class="style-middle-center">Tên sản phẩm</th>
                       <th class="style-middle-center">Hình ảnh</th>
+                      <th class="style-middle-center">Nhà sản xuất</th>
                       <th class="style-middle-center">Mô tả</th>
+                      <th class="style-middle-center">Thông số</th>
                       <th class="style-middle-center">Giá mới (VNĐ) </th>
                       <th class="style-middle-center">Giá cũ (VNĐ)</th>
                       <th class="style-middle-center">Số lượng</th>
@@ -78,7 +80,11 @@
                       <td class="style-middle-center">
                         <img src="<%= entry.imgSrc %>" class="img-product" id="product-image">
                       </td>
-                      <td class="style-middle-center" id="product-info"><%= entry.description %>
+                      <td class="style-middle-center" id="product-producer"><%= entry.producer %>
+                      </td>
+                      <td class="style-middle-center" id="product-des"><%= entry.description %>
+                      </td>
+                      <td class="style-middle-center" id="product-info"><%= entry.configuration %>
                       </td>
                       <td class="style-middle-center" id="product-price"><%= priceConverter(entry.price) %>
                       </td>
@@ -136,7 +142,13 @@
                     id="txt-product-category" required>
                 </div>
               </div>
-        
+              <div class="form-group row">
+                <label class="col-lg-2 col-md-2 col-form-label">Hãng</label>
+                <div class="col-lg-10 col-md-10">
+                  <input class="form-control ng-untouched ng-pristine ng-valid" type="text" name='producer'
+                    id="txt-product-producer" required>
+                </div>
+              </div>
               <div class="form-group row">
                 <label class="col-lg-2 col-md-2 col-form-label">Giá mới</label>
                 <div class="col-lg-10 col-md-10">
@@ -160,6 +172,13 @@
               </div>
               <div class="form-group row">
                 <label class="col-lg-2 col-md-2 col-form-label">Mô tả</label>
+                <div class="col-lg-10 col-md-10">
+                  <input class="form-control ng-untouched ng-pristine ng-valid" type="text" name='des'
+                    id="txt-product-des" required>
+                </div>
+              </div>
+              <div class="form-group row">
+                <label class="col-lg-2 col-md-2 col-form-label">Thông số</label>
                 <div class="col-lg-10 col-md-10">
                   <input class="form-control ng-untouched ng-pristine ng-valid" type="text" name='info'
                     id="txt-product-info" required>
@@ -203,10 +222,12 @@
       $("#my-form").attr('action', '/product/add');
       $('#txt-product-name').attr('value', '');
       $('#txt-product-category').attr('value', '');
+      $('#txt-product-producer').attr('value', '');
       $('#txt-product-price').attr('placeholder', '');
       $('#txt-product-old-price').attr('placeholder', '');
       $('#txt-product-quantity').attr('number', '');
       $('#txt-product-image').attr('src', 'images/imageHolder.png');
+      $('#txt-product-des').attr('value', '');
       $('#txt-product-info').attr('value', '');
       $("#category-list option").attr('selected', false);
     })
@@ -215,19 +236,23 @@
       $("#my-form").attr('action', '/product/edit');
       var name = $(this).parent().parent().find('#product-name').text();
       var category = $(this).parent().parent().find('#product-category').text();
+      var producer = $(this).parent().parent().find('#product-producer').text();
       var price = $(this).parent().parent().find('#product-price').text();
       //console.log($(this).parent().parent());
       var old_price = $(this).parent().parent().find('#product-old-price').text();
       var quantity = $(this).parent().parent().find('#product-quantity').text();
       var image = $(this).parent().parent().find('#product-image').attr('src');
+      var des = $(this).parent().parent().find('#product-des').text();
       var info = $(this).parent().parent().find('#product-info').text();
       var category = $(this).parent().parent().find('#product-category').text().trim();
       $('#txt-product-name').attr('value', name);
       $('#txt-product-category').attr('value', category);
+      $('#txt-product-producer').attr('value', producer);
       $('#txt-product-price').attr('value',  _priceConvert(price));
       $('#txt-product-old-price').attr('value', _priceConvert(old_price));
       $('#txt-product-quantity').attr('value', Number(quantity));
       $('#txt-product-image').attr('src', image);
+      $('#txt-product-des').attr('value', des);
       $('#txt-product-info').attr('value', info);
     })
     var loadFile = function (event) {
