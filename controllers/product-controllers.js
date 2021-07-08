@@ -27,6 +27,7 @@ exports.addProduct = async function (req, res, next) {
    const newOldPrice = req.body.old_price;
    const newQuantity = req.body.quantity;
    const newDescription = req.body.info;
+   const newConfiguration = req.body.info;
 
    if (!req.file) {
       res.status(401).json({ error: 'Please provide an image' });
@@ -53,6 +54,7 @@ exports.addProduct = async function (req, res, next) {
             quantity: newQuantity,
             imgSrc: image.url,
             description: newDescription,
+            configuration: newConfiguration,
          },
          function (err, small) {
             if (err) return next(err);
@@ -74,6 +76,7 @@ exports.editProduct = (req, res) => {
    const newOldPrice = req.body.old_price;
    const newQuantity = req.body.quantity;
    const newDescription = req.body.info;
+   const newConfiguration = req.body.info;
 
    if (!req.file) {
       res.status(401).json({ error: 'Please provide an image...!' });
@@ -100,6 +103,7 @@ exports.editProduct = (req, res) => {
             quantity: newQuantity,
             imgSrc: image.url,
             description: newDescription,
+            configuration: newConfiguration,
          },
          function (err, small) {
             if (err) return next(err);
