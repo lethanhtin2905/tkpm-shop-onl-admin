@@ -68,7 +68,6 @@ exports.addProduct = async function (req, res, next) {
    )
 }
 
-
 // Edit product
 exports.editProduct = (req, res) => {
    console.log(req.body)
